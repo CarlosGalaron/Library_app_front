@@ -1,0 +1,11 @@
+<div *ngFor="let book of books">
+    <h3>{{ book.title }} - {{ book.author }}</h3>
+    <p>Estado: {{ book.state }}</p>
+    <button (click)="toggleFavorite(book)">
+      {{ book.is_favourite ? '★' : '☆' }}
+    </button>
+    <button (click)="deleteBook(book.id)">Eliminar</button>
+  </div>
+  
+  <!-- Botón para redirigir al formulario de registro de libros -->
+  <button routerLink="/add-book">Añadir libro nuevo</button>
