@@ -1,9 +1,26 @@
-<div class="login-container">
+<!-- <div class="login-container">
     <h2>Iniciar sesión</h2>
     <input type="email" placeholder="Correo" [(ngModel)]="email">
     <input type="password" placeholder="Contraseña" [(ngModel)]="password">
     <button (click)="login()">Ingresar</button>
     <button (click)="register()">Registrarse</button>
     <p *ngIf="errorMessage">{{ errorMessage }}</p>
+  </div> -->
+
+  <div class="login-container">
+    <h2>Iniciar sesión</h2>
+    <div class="input">
+      <label for="email">Email</label>
+      <input type="email" placeholder="Correo" [(ngModel)]="email">
+    </div>
+    <div class="input">
+      <label for="password">Contraseña</label>
+      <input type="password" placeholder="Contraseña" [(ngModel)]="password">
+    </div>
+    <div class="boton">
+      <button (click)="login()">Ingresar</button>
+      <button (click)="register()">Registrarse</button>
+    </div>
+    <p *ngIf="errorMessage">{{ errorMessage }}</p>
   </div>
   
