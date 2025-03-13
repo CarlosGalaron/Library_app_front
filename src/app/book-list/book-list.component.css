@@ -47,6 +47,10 @@ button:hover {
 	box-shadow: none;
 }
 
+.star{
+    width: 24px;
+}
+
 .contenedorBoton {
 	display: flex;
 	justify-content: center;

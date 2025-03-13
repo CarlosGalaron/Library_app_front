@@ -18,7 +18,7 @@
     <td>{{ book.title }}</td>
     <td>{{ book.author }}</td>
     <td>
-      <button (click)="toggleFavorite(book)">
+      <button class="star" (click)="toggleFavorite(book)">
         {{ book.is_favourite ? '★' : '☆' }}
       </button>
     </td>
