@@ -43,13 +43,22 @@ export class BookListComponent implements OnInit {
     }
   }
 
-  async toggleFavorite(book: any) {
-    book.is_favourite = !book.is_favourite;
-    try {
-      await this.bookService.updateBook(book);
-      await this.loadBooks();
-    } catch (error) {
-      console.error('Error al actualizar el libro', error);
-    }
+  toggleBookState(book: any): void {
+    this.bookService.toggleBookState(book.id).subscribe(
+      () => {
+        book.state = book.state === 'pendiente' ? 'leído' : 'pendiente';
+      },
+      (error) => console.error('Error al cambiar el estado del libro', error)
+    );
   }
+
+  toggleFavorite(book: any): void {
+    this.bookService.toggleFavorite(book.id).subscribe(
+      () => {
+        book.is_favourite = !book.is_favourite;
+      },
+      (error) => console.error('Error al marcar como favorito', error)
+    );
+  }
+
 }

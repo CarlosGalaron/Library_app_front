@@ -9,7 +9,7 @@ import { Observable, catchError, switchMap, throwError, from } from 'rxjs';
 export class BookService {
   private apiUrl = 'http://localhost:8080/api/books';
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   // Función para obtener las cabeceras con el token del usuario
   private getHeaders(): Observable<HttpHeaders> {
@@ -61,6 +61,22 @@ export class BookService {
   updateBook(book: any): Observable<any> {
     return this.getHeaders().pipe(
       switchMap((headers) => this.http.put<any>(`${this.apiUrl}/${book.id}`, book, { headers })),
+      catchError(this.handleError)
+    );
+  }
+
+  // Cambiar el estado de un libro
+  toggleBookState(bookId: number): Observable<any> {
+    return this.getHeaders().pipe(
+      switchMap((headers) => this.http.put(`${this.apiUrl}/${bookId}/toggle-state`, {}, { headers })),
+      catchError(this.handleError)
+    );
+  }
+
+  // Marcar/desmarcar como favorito
+  toggleFavorite(bookId: number): Observable<any> {
+    return this.getHeaders().pipe(
+      switchMap((headers) => this.http.put(`${this.apiUrl}/${bookId}/toggle-favorite`, {}, { headers })),
       catchError(this.handleError)
     );
   }
